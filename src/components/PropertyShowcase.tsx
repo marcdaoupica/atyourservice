@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, MapPin, ExternalLink, Waves, Mountain, Trees, Building2 } from "lucide-react";
+import { Star, MapPin, ExternalLink, Waves, Mountain, Trees, Building2, Grid, ExternalLink as EmbedIcon } from "lucide-react";
+import { AirbnbEmbed } from "./AirbnbEmbed";
 
 export const PropertyShowcase = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
+  const [viewMode, setViewMode] = useState<"cards" | "embeds">("cards");
 
   const filters = [
     { name: "All", icon: Building2 },
@@ -28,35 +30,38 @@ export const PropertyShowcase = () => {
       bathrooms: 2,
       image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       type: "Sea",
-      airbnbUrl: "#"
+      airbnbId: "51495736", // Your actual Airbnb listing ID
+      airbnbUrl: "https://www.airbnb.com/rooms/51495736?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
       id: 2,
-      title: "Byblos Heritage House",
-      location: "Old Souk, Byblos",
-      price: 35,
-      rating: 4.8,
+      title: "Modern Zouk Mosbeh Apartment",
+      location: "Zouk Mosbeh, Mount Lebanon",
+      price: 65,
+      rating: 5.0,
       reviews: 89,
       guests: 6,
       bedrooms: 3,
-      bathrooms: 2,
+      bathrooms: 3, // 2.5 baths rounded up
       image: "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       type: "Sea",
-      airbnbUrl: "#"
+      airbnbId: "50113039", // Your actual Airbnb listing ID
+      airbnbUrl: "https://www.airbnb.com/rooms/50113039?check_in=2025-12-01&check_out=2025-12-06&guests=1&adults=1&s=66&source=embed_widget"
     },
     {
       id: 3,
-      title: "Faraya Mountain Chalet",
-      location: "Faraya, Mount Lebanon",
-      price: 55,
-      rating: 4.9,
+      title: "Cozy Zouk Mosbeh Condo",
+      location: "Zouk Mosbeh, Mount Lebanon",
+      price: 45,
+      rating: 4.83,
       reviews: 156,
-      guests: 8,
-      bedrooms: 4,
-      bathrooms: 3,
+      guests: 4,
+      bedrooms: 1,
+      bathrooms: 1,
       image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Mountain",
-      airbnbUrl: "#"
+      type: "Sea",
+      airbnbId: "717035280873686484", // Your actual Airbnb listing ID
+      airbnbUrl: "https://www.airbnb.com/rooms/717035280873686484?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
       id: 4,
@@ -202,7 +207,7 @@ export const PropertyShowcase = () => {
           </p>
           
           {/* Filter Buttons */}
-          <div className="flex justify-center gap-4 mb-8">
+          <div className="flex justify-center gap-4 mb-6">
             {filters.map((filter) => {
               const IconComponent = filter.icon;
               return (
@@ -222,67 +227,120 @@ export const PropertyShowcase = () => {
               );
             })}
           </div>
+
+          {/* View Mode Toggle */}
+          <div className="flex justify-center gap-2 mb-8">
+            <Button
+              variant={viewMode === "cards" ? "default" : "outline"}
+              onClick={() => setViewMode("cards")}
+              className={`flex items-center gap-2 ${
+                viewMode === "cards"
+                  ? "bg-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-light))]"
+                  : "border-[hsl(var(--brand-dark))] text-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-dark))] hover:text-white"
+              }`}
+            >
+              <Grid className="w-4 h-4" />
+              Card View
+            </Button>
+            <Button
+              variant={viewMode === "embeds" ? "default" : "outline"}
+              onClick={() => setViewMode("embeds")}
+              className={`flex items-center gap-2 ${
+                viewMode === "embeds"
+                  ? "bg-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-light))]"
+                  : "border-[hsl(var(--brand-dark))] text-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-dark))] hover:text-white"
+              }`}
+            >
+              <EmbedIcon className="w-4 h-4" />
+              Airbnb Embeds
+            </Button>
+          </div>
         </div>
 
         {/* Properties Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProperties.map((property) => (
-            <Card key={property.id} className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300 bg-white">
-              <div className="relative">
-                <img 
-                  src={property.image} 
-                  alt={property.title}
-                  className="w-full h-56 object-cover"
-                />
-                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                  <span className="text-xs font-medium">{property.rating}</span>
-                </div>
-              </div>
-              
-              <CardContent className="p-4 space-y-3">
-                <div>
-                  <h3 className="font-semibold text-lg text-gray-900 mb-1 line-clamp-1">{property.title}</h3>
-                  <div className="flex items-center gap-1 text-gray-600 mb-2">
-                    <MapPin className="w-4 h-4" />
-                    <span className="text-sm">{property.location}</span>
+        {viewMode === "cards" ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProperties.map((property) => (
+              <Card key={property.id} className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300 bg-white">
+                <div className="relative">
+                  <img 
+                    src={property.image} 
+                    alt={property.title}
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                    <span className="text-xs font-medium">{property.rating}</span>
                   </div>
                 </div>
-
-                <div className="flex items-center justify-between text-sm text-gray-600">
-                  <span>{property.guests} guests</span>
-                  <span>{property.bedrooms} bed</span>
-                  <span>{property.bathrooms} bath</span>
-                </div>
-
-                <div className="flex items-center justify-between pt-2">
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm text-gray-600">({property.reviews} reviews)</span>
+                
+                <CardContent className="p-4 space-y-3">
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-1 line-clamp-1">{property.title}</h3>
+                    <div className="flex items-center gap-1 text-gray-600 mb-2">
+                      <MapPin className="w-4 h-4" />
+                      <span className="text-sm">{property.location}</span>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <span className="font-bold text-lg">${property.price}</span>
-                    <span className="text-gray-600 text-sm">/night</span>
-                  </div>
-                </div>
 
-                <Button 
-                  asChild
-                  className="w-full bg-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-light))] text-white"
-                >
-                  <a 
-                    href={property.airbnbUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
+                  <div className="flex items-center justify-between text-sm text-gray-600">
+                    <span>{property.guests} guests</span>
+                    <span>{property.bedrooms} bed</span>
+                    <span>{property.bathrooms} bath</span>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm text-gray-600">({property.reviews} reviews)</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-lg">${property.price}</span>
+                      <span className="text-gray-600 text-sm">/night</span>
+                    </div>
+                  </div>
+
+                  <Button 
+                    asChild
+                    className="w-full bg-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-light))] text-white"
                   >
-                    View on Airbnb
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                    <a 
+                      href={property.airbnbUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      View on Airbnb
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProperties.map((property) => (
+              <div key={property.id} className="space-y-4">
+                <div className="text-center">
+                  <h3 className="font-semibold text-lg text-gray-900 mb-1">{property.title}</h3>
+                  <p className="text-sm text-gray-600 mb-3">{property.location}</p>
+                </div>
+                {property.airbnbId && property.airbnbId !== "PLACEHOLDER_ID" ? (
+                  <AirbnbEmbed 
+                    listingId={property.airbnbId} 
+                    width={400} 
+                    height={350} 
+                  />
+                ) : (
+                  <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                    <p className="text-gray-500 mb-2">Airbnb Embed Placeholder</p>
+                    <p className="text-sm text-gray-400">Replace with actual Airbnb listing ID</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-6">

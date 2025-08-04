@@ -10,27 +10,27 @@ export const Team = () => {
       role: "Guest Relations Specialist", 
       icon: MessageSquare,
       color: "bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]",
-      description: "Handles all pre-booking communications, special offers, guest inquiries, and verification processes on Airbnb platforms.",
+      description: "Handles all pre-booking communications, guest inquiries, verification processes, and manages financial reporting and accounting operations for all properties.",
       responsibilities: [
         "Pre-booking guest communication",
-        "Special offers and promotions", 
         "Guest verification and ID checks",
+        "Financial reporting and accounting operations",
         "Booking rules and guidelines",
-        "Platform optimization"
+        "Cancellation management",
       ]
     },
     {
       name: "Kevin",
-      role: "Customer Success Manager", 
+      role: "Customer Success & Social Media Manager", 
       icon: Headphones,
       color: "bg-blue-100 text-blue-600",
-      description: "Provides comprehensive support to both guests and property owners, managing all post-booking communications and issue resolution.",
+      description: "Provides comprehensive support to both guests and property owners, coordinating property photography, and driving brand engagement through social media.",
       responsibilities: [
         "24/7 guest support via WhatsApp",
-        "Host communication and updates",
-        "Booking issue resolution", 
-        "Cancellation management",
-        "Operations coordination"
+        "Property photography coordination and updates",
+        "Operations coordination",
+        "Social media content creation and management",
+        "Brand engagement and online community building"
       ]
     },
     {
@@ -52,12 +52,12 @@ export const Team = () => {
       role: "Technology Director",
       icon: Code, 
       color: "bg-indigo-100 text-indigo-600",
-      description: "Manages all digital aspects including website development, listing creation, photography coordination, and QR code systems.",
+      description: "Manages all digital aspects including website development, listing creation, automated messaging workflows, and QR code systems for apartment management.",
       responsibilities: [
         "Website development and maintenance",
         "Professional listing creation",
-        "Photography coordination", 
-        "QR code and digital systems",
+        "Automated messaging systems and workflows", 
+        "QR code and digital systems for apatments",
         "SEO and platform optimization"
       ]
     }
