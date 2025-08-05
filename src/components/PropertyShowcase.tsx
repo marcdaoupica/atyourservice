@@ -1,27 +1,32 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Star, MapPin, ExternalLink, Waves, Mountain, Trees, Building2, Grid, ExternalLink as EmbedIcon } from "lucide-react";
+import { Waves, Mountain, Trees, Building2 } from "lucide-react";
 import { AirbnbEmbed } from "./AirbnbEmbed";
+
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    airbnbEmbed?: {
+      renderEmbeds: () => void;
+    };
+  }
+}
 
 export const PropertyShowcase = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
-  const [viewMode, setViewMode] = useState<"cards" | "embeds">("cards");
 
   const filters = [
     { name: "All", icon: Building2 },
-    { name: "Sea", icon: Waves },
-    { name: "Mountain", icon: Mountain },
-    { name: "Forest", icon: Trees },
+    { name: "Achrafieh", icon: Building2 },
+    { name: "Zouk Mosbeh", icon: Mountain },
+    { name: "Jal el Dib", icon: Waves },
   ];
 
   const properties = [
     {
       id: 1,
-      title: "Luxury Beirut Apartment",
-      location: "Gemmayzeh, Beirut",
+      title: "Outstanding Modern Stay - Sea View",
+      location: "Jal el Dib, Lebanon",
       price: 45,
       rating: 4.9,
       reviews: 127,
@@ -29,13 +34,43 @@ export const PropertyShowcase = () => {
       bedrooms: 2,
       bathrooms: 2,
       image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Sea",
+      type: "Jal el Dib",
       airbnbId: "51495736", // Your actual Airbnb listing ID
       airbnbUrl: "https://www.airbnb.com/rooms/51495736?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
       id: 2,
-      title: "Modern Zouk Mosbeh Apartment",
+      title: "Luxurious 2BR Haven - City Views",
+      location: "Achrafieh, Beirut, Lebanon",
+      price: 70,
+      rating: 5.0,
+      reviews: 203,
+      guests: 6,
+      bedrooms: 2,
+      bathrooms: 1,
+      image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      type: "Achrafieh",
+      airbnbId: "1308747579227635928",
+      airbnbUrl: "https://www.airbnb.com/rooms/1308747579227635928?guests=1&adults=1&s=66&source=embed_widget"
+    },
+    {
+      id: 3,
+      title: "Stylish Studio Retreat - Downtown",
+      location: "Achrafieh, Beirut, Lebanon",
+      price: 40,
+      rating: 4.9,
+      reviews: 98,
+      guests: 2,
+      bedrooms: 1,
+      bathrooms: 1,
+      image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      type: "Achrafieh",
+      airbnbId: "1311468561815404750",
+      airbnbUrl: "https://www.airbnb.com/rooms/1311468561815404750?guests=1&adults=1&s=66&source=embed_widget"
+    },
+    {
+      id: 4,
+      title: "Spacious 3BR Coastal Escape - Premium",
       location: "Zouk Mosbeh, Mount Lebanon",
       price: 65,
       rating: 5.0,
@@ -44,13 +79,28 @@ export const PropertyShowcase = () => {
       bedrooms: 3,
       bathrooms: 3, // 2.5 baths rounded up
       image: "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Sea",
+      type: "Zouk Mosbeh",
       airbnbId: "50113039", // Your actual Airbnb listing ID
       airbnbUrl: "https://www.airbnb.com/rooms/50113039?check_in=2025-12-01&check_out=2025-12-06&guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 3,
-      title: "Cozy Zouk Mosbeh Condo",
+      id: 5,
+      title: "Contemporary Urban Loft - Central",
+      location: "Achrafieh, Beirut, Lebanon",
+      price: 50,
+      rating: 4.7,
+      reviews: 67,
+      guests: 4,
+      bedrooms: 1,
+      bathrooms: 1,
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      type: "Achrafieh",
+      airbnbId: "1314360430081139692",
+      airbnbUrl: "https://www.airbnb.com/rooms/1314360430081139692?guests=1&adults=1&s=66&source=embed_widget"
+    },
+    {
+      id: 6,
+      title: "Charming Seaside Condo - Waterfront",
       location: "Zouk Mosbeh, Mount Lebanon",
       price: 45,
       rating: 4.83,
@@ -59,141 +109,45 @@ export const PropertyShowcase = () => {
       bedrooms: 1,
       bathrooms: 1,
       image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Sea",
+      type: "Zouk Mosbeh",
       airbnbId: "717035280873686484", // Your actual Airbnb listing ID
       airbnbUrl: "https://www.airbnb.com/rooms/717035280873686484?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 4,
-      title: "Cedar Forest Retreat",
-      location: "Bcharre, North Lebanon",
-      price: 65,
-      rating: 4.8,
-      reviews: 203,
-      guests: 6,
-      bedrooms: 3,
-      bathrooms: 2,
-      image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Forest",
-      airbnbUrl: "#"
-    },
-    {
-      id: 5,
-      title: "Tyre Beach Villa",
-      location: "Tyre, South Lebanon",
-      price: 75,
-      rating: 4.9,
-      reviews: 98,
-      guests: 10,
-      bedrooms: 5,
-      bathrooms: 4,
-      image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Sea",
-      airbnbUrl: "#"
-    },
-    {
-      id: 6,
-      title: "Douma Stone House",
-      location: "Douma, Batroun",
-      price: 40,
-      rating: 4.7,
-      reviews: 67,
-      guests: 4,
-      bedrooms: 2,
-      bathrooms: 1,
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Mountain",
-      airbnbUrl: "#"
-    },
-    {
       id: 7,
-      title: "Jounieh Bay Apartment",
-      location: "Jounieh, Mount Lebanon",
-      price: 50,
-      rating: 4.8,
+      title: "Executive Suite Experience - Prime Location",
+      location: "Achrafieh, Beirut, Lebanon",
+      price: 55,
+      rating: 5.0,
       reviews: 134,
-      guests: 6,
-      bedrooms: 3,
-      bathrooms: 2,
-      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Sea",
-      airbnbUrl: "#"
-    },
-    {
-      id: 8,
-      title: "Ehden Mountain Lodge",
-      location: "Ehden, North Lebanon",
-      price: 60,
-      rating: 4.9,
-      reviews: 89,
-      guests: 8,
-      bedrooms: 4,
-      bathrooms: 3,
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Forest",
-      airbnbUrl: "#"
-    },
-    {
-      id: 9,
-      title: "Sidon Old City Riad",
-      location: "Sidon, South Lebanon",
-      price: 38,
-      rating: 4.6,
-      reviews: 76,
-      guests: 5,
-      bedrooms: 2,
-      bathrooms: 2,
-      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Sea",
-      airbnbUrl: "#"
-    },
-    {
-      id: 10,
-      title: "Baalbek Valley Farm",
-      location: "Baalbek, Bekaa",
-      price: 45,
-      rating: 4.7,
-      reviews: 112,
-      guests: 8,
-      bedrooms: 4,
-      bathrooms: 2,
-      image: "https://images.unsplash.com/photo-1464146072230-91cabc968266?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Mountain",
-      airbnbUrl: "#"
-    },
-    {
-      id: 11,
-      title: "Anfeh Coastal Cottage",
-      location: "Anfeh, North Lebanon",
-      price: 42,
-      rating: 4.8,
-      reviews: 93,
-      guests: 4,
-      bedrooms: 2,
+      guests: 2,
+      bedrooms: 1,
       bathrooms: 1,
-      image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Sea",
-      airbnbUrl: "#"
-    },
-    {
-      id: 12,
-      title: "Hammana Pine Retreat",
-      location: "Hammana, Mount Lebanon",
-      price: 52,
-      rating: 4.9,
-      reviews: 87,
-      guests: 6,
-      bedrooms: 3,
-      bathrooms: 2,
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      type: "Forest",
-      airbnbUrl: "#"
+      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      type: "Achrafieh",
+      airbnbId: "1312875896663735918",
+      airbnbUrl: "https://www.airbnb.com/rooms/1312875896663735918?guests=1&adults=1&s=66&source=embed_widget"
     }
   ];
 
   const filteredProperties = selectedFilter === "All" 
     ? properties 
     : properties.filter(property => property.type === selectedFilter);
+
+  // Force Airbnb embeds to re-render when filter changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.airbnbEmbed) {
+        try {
+          window.airbnbEmbed.renderEmbeds();
+        } catch (error) {
+          console.log('Global embed render attempt:', error);
+        }
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [selectedFilter]);
 
   return (
     <section id="listings" className="py-20 bg-gray-50">
@@ -206,7 +160,7 @@ export const PropertyShowcase = () => {
             Discover exceptional stays from the Mediterranean coast to the Lebanese mountains
           </p>
           
-          {/* Filter Buttons */}
+          {/* Filter Buttons - HIDDEN FOR NOW, UNCOMMENT TO ENABLE
           <div className="flex justify-center gap-4 mb-6">
             {filters.map((filter) => {
               const IconComponent = filter.icon;
@@ -227,120 +181,33 @@ export const PropertyShowcase = () => {
               );
             })}
           </div>
-
-          {/* View Mode Toggle */}
-          <div className="flex justify-center gap-2 mb-8">
-            <Button
-              variant={viewMode === "cards" ? "default" : "outline"}
-              onClick={() => setViewMode("cards")}
-              className={`flex items-center gap-2 ${
-                viewMode === "cards"
-                  ? "bg-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-light))]"
-                  : "border-[hsl(var(--brand-dark))] text-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-dark))] hover:text-white"
-              }`}
-            >
-              <Grid className="w-4 h-4" />
-              Card View
-            </Button>
-            <Button
-              variant={viewMode === "embeds" ? "default" : "outline"}
-              onClick={() => setViewMode("embeds")}
-              className={`flex items-center gap-2 ${
-                viewMode === "embeds"
-                  ? "bg-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-light))]"
-                  : "border-[hsl(var(--brand-dark))] text-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-dark))] hover:text-white"
-              }`}
-            >
-              <EmbedIcon className="w-4 h-4" />
-              Airbnb Embeds
-            </Button>
-          </div>
+          */}
         </div>
 
         {/* Properties Grid */}
-        {viewMode === "cards" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProperties.map((property) => (
-              <Card key={property.id} className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300 bg-white">
-                <div className="relative">
-                  <img 
-                    src={property.image} 
-                    alt={property.title}
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1">
-                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                    <span className="text-xs font-medium">{property.rating}</span>
-                  </div>
-                </div>
-                
-                <CardContent className="p-4 space-y-3">
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 mb-1 line-clamp-1">{property.title}</h3>
-                    <div className="flex items-center gap-1 text-gray-600 mb-2">
-                      <MapPin className="w-4 h-4" />
-                      <span className="text-sm">{property.location}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between text-sm text-gray-600">
-                    <span>{property.guests} guests</span>
-                    <span>{property.bedrooms} bed</span>
-                    <span>{property.bathrooms} bath</span>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="flex items-center gap-1">
-                      <span className="text-sm text-gray-600">({property.reviews} reviews)</span>
-                    </div>
-                    <div className="text-right">
-                      <span className="font-bold text-lg">${property.price}</span>
-                      <span className="text-gray-600 text-sm">/night</span>
-                    </div>
-                  </div>
-
-                  <Button 
-                    asChild
-                    className="w-full bg-[hsl(var(--brand-dark))] hover:bg-[hsl(var(--brand-light))] text-white"
-                  >
-                    <a 
-                      href={property.airbnbUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      View on Airbnb
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProperties.map((property) => (
-              <div key={property.id} className="space-y-4">
-                <div className="text-center">
-                  <h3 className="font-semibold text-lg text-gray-900 mb-1">{property.title}</h3>
-                  <p className="text-sm text-gray-600 mb-3">{property.location}</p>
-                </div>
-                {property.airbnbId && property.airbnbId !== "PLACEHOLDER_ID" ? (
-                  <AirbnbEmbed 
-                    listingId={property.airbnbId} 
-                    width={400} 
-                    height={350} 
-                  />
-                ) : (
-                  <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                    <p className="text-gray-500 mb-2">Airbnb Embed Placeholder</p>
-                    <p className="text-sm text-gray-400">Replace with actual Airbnb listing ID</p>
-                  </div>
-                )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProperties.map((property) => (
+            <div key={property.id} className="space-y-4">
+              <div className="text-center">
+                <h3 className="font-semibold text-lg text-gray-900 mb-1">{property.title}</h3>
+                <p className="text-sm text-gray-600 mb-3">{property.location}</p>
               </div>
-            ))}
-          </div>
-        )}
+              {property.airbnbId && property.airbnbId !== "PLACEHOLDER_ID" ? (
+                <AirbnbEmbed 
+                  key={`${property.airbnbId}-${selectedFilter}`}
+                  listingId={property.airbnbId} 
+                  width={500} 
+                  height={300} 
+                />
+              ) : (
+                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                  <p className="text-gray-500 mb-2">Airbnb Embed Placeholder</p>
+                  <p className="text-sm text-gray-400">Replace with actual Airbnb listing ID</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
 
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-6">

@@ -120,7 +120,7 @@ export const Contact = () => {
                   <Mail className="w-8 h-8 text-white mx-auto mb-3" />
                   <h3 className="font-bold mb-2">Email Us</h3>
                   <p className="text-gray-300 text-sm mb-3">Get detailed information</p>
-                  <p className="text-white font-semibold">hello@atyourservice.lb</p>
+                  <p className="text-white font-semibold">marc7182@gmail.com</p>
                 </CardContent>
               </Card>
             </div>
