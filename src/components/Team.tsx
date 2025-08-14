@@ -20,7 +20,7 @@ export const Team = () => {
       ]
     },
     {
-      name: "Kevin Karam",
+      name: "Kevin Azar Karam",
       role: "Customer Success & Social Media Manager", 
       icon: Headphones,
       color: "bg-blue-100 text-blue-600",
