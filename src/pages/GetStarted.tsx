@@ -85,6 +85,7 @@ const GetStarted = () => {
                     <h3 className="font-bold mb-2">Call Us Now</h3>
                     <p className="text-[hsl(var(--primary)/0.7)] text-sm mb-3">Speak with our Lebanese team</p>
                     <p className="text-white font-semibold">+961 76 603 820</p>
+                    <p className="text-white font-semibold">or +961 70 200 613</p>
                   </CardContent>
                 </Card>
 
@@ -93,7 +94,8 @@ const GetStarted = () => {
                     <Mail className="w-8 h-8 text-white mx-auto mb-3" />
                     <h3 className="font-bold mb-2">Email Us</h3>
                     <p className="text-green-100 text-sm mb-3">Get detailed information</p>
-                    <p className="text-white font-semibold">marc7182@gmail.com</p>
+                    <p className="text-white font-semibold">atyourservice.co.lb@gmail.com</p>
+                    <p className="text-white font-semibold">or kevinkaram@hotmail.com</p>
                   </CardContent>
                 </Card>
               </div>

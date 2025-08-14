@@ -6,7 +6,7 @@ import { MessageSquare, Code, Wrench, Headphones } from "lucide-react";
 export const Team = () => {
   const team = [
     {
-      name: "Elie",
+      name: "Elie Costantine",
       role: "Guest Relations Specialist", 
       icon: MessageSquare,
       color: "bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]",
@@ -20,7 +20,7 @@ export const Team = () => {
       ]
     },
     {
-      name: "Kevin",
+      name: "Kevin Karam",
       role: "Customer Success & Social Media Manager", 
       icon: Headphones,
       color: "bg-blue-100 text-blue-600",
@@ -34,7 +34,7 @@ export const Team = () => {
       ]
     },
     {
-      name: "Christ", 
+      name: "Christ Apochian", 
       role: "Operations Manager",
       icon: Wrench,
       color: "bg-emerald-100 text-emerald-600", 
@@ -48,7 +48,7 @@ export const Team = () => {
       ]
     },
     {
-      name: "Marc",
+      name: "Marc Daou",
       role: "Technology Director",
       icon: Code, 
       color: "bg-indigo-100 text-indigo-600",
