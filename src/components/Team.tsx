@@ -19,6 +19,7 @@ export const Team = () => {
         "Cancellation management",
       ]
     },
+    
     {
       name: "Kevin Azar Karam",
       role: "Customer Success & Social Media Manager", 
