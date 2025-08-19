@@ -84,7 +84,7 @@ const GetStarted = () => {
                     <Phone className="w-8 h-8 text-white mx-auto mb-3" />
                     <h3 className="font-bold mb-2">Call Us Now</h3>
                     <p className="text-[hsl(var(--primary)/0.7)] text-sm mb-3">Speak with our Lebanese team</p>
-                    <p className="text-white font-semibold">+961 76 603 820</p>
+                    <p className="text-white font-semibold">+961 71 603 820</p>
                   </CardContent>
                 </Card>
 
@@ -177,7 +177,7 @@ const GetStarted = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+961 76 603 820"
+                      placeholder="+961 71 603 820"
                       className="h-12"
                       required
                     />
