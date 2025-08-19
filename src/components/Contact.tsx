@@ -112,7 +112,6 @@ export const Contact = () => {
                   <h3 className="font-bold mb-2">Call Us/ Whatsapp</h3>
                   <p className="text-gray-300 text-sm mb-3">Speak with our team directly</p>
                   <p className="text-white font-semibold">+961 76 603 820</p>
-                  <p className="text-white font-semibold">or +961 70 200 613</p>
                 </CardContent>
               </Card>
 
