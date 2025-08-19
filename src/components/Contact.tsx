@@ -121,7 +121,6 @@ export const Contact = () => {
                   <h3 className="font-bold mb-2">Email Us</h3>
                   <p className="text-gray-300 text-sm mb-3">Get detailed information</p>
                   <p className="text-white font-semibold">atyourservice.co.lb@gmail.com</p>
-                  <p className="text-white font-semibold">or kevinkaram@hotmail.com</p>
                 </CardContent>
               </Card>
             </div>
