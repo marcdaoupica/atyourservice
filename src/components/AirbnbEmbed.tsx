@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 
 interface AirbnbEmbedProps {
   listingId: string;
@@ -15,6 +15,17 @@ export const AirbnbEmbed = ({
 }: AirbnbEmbedProps) => {
   const embedRef = useRef<HTMLDivElement>(null);
   const scriptLoadedRef = useRef(false);
+  const [computedHeight, setComputedHeight] = useState<number>(height);
+
+  const aspectRatio = width / height;
+
+  const updateSize = useCallback(() => {
+    if (!embedRef.current) return;
+    const containerWidth = embedRef.current.clientWidth || width;
+    const targetWidth = Math.min(containerWidth, width);
+    const newHeight = Math.max(150, Math.round(targetWidth / aspectRatio));
+    setComputedHeight(newHeight);
+  }, [width, aspectRatio]);
 
   const renderEmbeds = useCallback(() => {
     if (window.airbnbEmbed && embedRef.current) {
@@ -63,6 +74,20 @@ export const AirbnbEmbed = ({
     // Load script and render embeds
     loadAirbnbScript();
 
+    // Ensure correct sizing on mount and on resize
+    updateSize();
+    const handleResize = () => {
+      updateSize();
+      // Nudge the embed to resize if needed
+      setTimeout(renderEmbeds, 150);
+    };
+    window.addEventListener('resize', handleResize);
+    let ro: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== 'undefined' && embedRef.current) {
+      ro = new ResizeObserver(() => handleResize());
+      ro.observe(embedRef.current);
+    }
+
     // Set up an interval to periodically try to render embeds
     // This helps with cases where the SDK doesn't initially work
     const interval = setInterval(() => {
@@ -82,8 +107,12 @@ export const AirbnbEmbed = ({
     return () => {
       clearInterval(interval);
       clearTimeout(timeout);
+      window.removeEventListener('resize', handleResize);
+      if (ro && embedRef.current) {
+        try { ro.unobserve(embedRef.current); } catch {}
+      }
     };
-  }, [listingId, loadAirbnbScript, renderEmbeds]);
+  }, [listingId, loadAirbnbScript, renderEmbeds, updateSize]);
 
   const airbnbUrl = `https://www.airbnb.com/rooms/${listingId}?guests=1&adults=1&s=66&source=embed_widget`;
 
@@ -94,7 +123,7 @@ export const AirbnbEmbed = ({
       data-id={listingId}
       data-view="home"
       data-hide-price={hidePrice}
-      style={{ width: `${width}px`, height: `${height}px`, margin: 'auto' }}
+      style={{ width: '100%', maxWidth: `${width}px`, height: `${computedHeight}px`, margin: 'auto' }}
     >
       <a href={airbnbUrl}>View On Airbnb</a>
       <a href={airbnbUrl} rel="nofollow">

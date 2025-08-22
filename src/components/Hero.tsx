@@ -79,21 +79,21 @@ export const Hero = () => {
                 <img src="/lovable-uploads/b53a4fd6-a902-4656-bf14-899c484b49a4.jpg" alt="Modern luxury Lebanese property interior" className="w-full h-full object-cover" />
                 
                 {/* Static Stats Bubbles */}
-                <div className="absolute bg-white rounded-full p-3 shadow-lg border-4 border-[hsl(var(--primary))] top-4 left-4">
+                <div className="absolute bg-white rounded-full p-3 shadow-lg border-4 border-[hsl(var(--primary))] top-4 left-4 hidden md:block">
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-[hsl(var(--primary))]" />
                     <span className="text-sm font-bold">89% Occupancy</span>
                   </div>
                 </div>
 
-                <div className="absolute bg-white rounded-full p-3 shadow-lg border-4 border-green-500 top-1/2 right-4">
+                <div className="absolute bg-white rounded-full p-3 shadow-lg border-4 border-green-500 top-1/2 right-4 hidden md:block">
                   <div className="flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-green-600" />
                     <span className="text-sm font-bold">$2300/mo</span>
                   </div>
                 </div>
 
-                <div className="absolute bg-white rounded-full p-3 shadow-lg border-4 border-purple-500 bottom-4 left-1/3">
+                <div className="absolute bg-white rounded-full p-3 shadow-lg border-4 border-purple-500 bottom-4 left-1/3 hidden md:block">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-purple-600" />
                     <span className="text-sm font-bold">Peak Summer</span>
