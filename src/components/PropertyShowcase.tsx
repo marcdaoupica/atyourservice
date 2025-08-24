@@ -23,10 +23,25 @@ export const PropertyShowcase = () => {
   ];
 
   const properties = [
+    // {
+    //   id: 1,
+    //   title: "Outstanding Modern Stay - Sea View",
+    //   location: "Jal el Dib, Lebanon",
+    //   price: 45,
+    //   rating: 4.9,
+    //   reviews: 127,
+    //   guests: 4,
+    //   bedrooms: 2,
+    //   bathrooms: 2,
+    //   image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    //   type: "Jal el Dib",
+    //   airbnbId: "51495736", // Your actual Airbnb listing ID
+    //   airbnbUrl: "https://www.airbnb.com/rooms/51495736?guests=1&adults=1&s=66&source=embed_widget"
+    // },
     {
       id: 1,
-      title: "Outstanding Modern Stay - Sea View",
-      location: "Jal el Dib, Lebanon",
+      title: "Cedar View Retreat • Garden & Pool Access • 101",
+      location: "Arz Al Barouk, Lebanon",
       price: 45,
       rating: 4.9,
       reviews: 127,
@@ -35,8 +50,8 @@ export const PropertyShowcase = () => {
       bathrooms: 2,
       image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       type: "Jal el Dib",
-      airbnbId: "51495736", // Your actual Airbnb listing ID
-      airbnbUrl: "https://www.airbnb.com/rooms/51495736?guests=1&adults=1&s=66&source=embed_widget"
+      airbnbId: "1490802314296186663", // Your actual Airbnb listing ID
+      airbnbUrl: "https://www.airbnb.com/rooms/1490802314296186663?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
       id: 2,
