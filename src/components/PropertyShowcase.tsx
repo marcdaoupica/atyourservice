@@ -54,6 +54,21 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/1490802314296186663?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
+      id: 8,
+      title: "Quiet Cedar-Forest Escape • 102",
+      location: "Arz Al Barouk, Lebanon",
+      price: 50,
+      rating: 5.0,
+      reviews: 12,
+      guests: 4,
+      bedrooms: 2,
+      bathrooms: 1,
+      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      type: "Jal el Dib",
+      airbnbId: "1495499466731601863",
+      airbnbUrl: "https://www.airbnb.com/rooms/1495499466731601863?guests=1&adults=1&s=66&source=embed_widget"
+    },
+    {
       id: 2,
       title: "Luxurious 2BR Haven - City Views",
       location: "Achrafieh, Beirut, Lebanon",
