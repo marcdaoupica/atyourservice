@@ -40,6 +40,21 @@ export const PropertyShowcase = () => {
     // },
     {
       id: 1,
+      title: "Faraya Peaks Chalet | Fireplace & Balcony BBQ",
+      location: "Faraya, Kfardebian, Lebanon",
+      price: 45,
+      rating: 4.9,
+      reviews: 127,
+      guests: 4,
+      bedrooms: 2,
+      bathrooms: 2,
+      image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      type: "Jal el Dib",
+      airbnbId: "1494777569509661946", // Your actual Airbnb listing ID
+      airbnbUrl: "https://www.airbnb.com/rooms/1494777569509661946?guests=1&adults=1&s=66&source=embed_widget"
+    },
+    {
+      id: 2,
       title: "Cedar View Retreat • Garden & Pool Access • 101",
       location: "Arz Al Barouk, Lebanon",
       price: 45,
@@ -54,7 +69,7 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/1490802314296186663?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 2,
+      id: 3,
       title: "Quiet Cedar-Forest Escape • 102",
       location: "Arz Al Barouk, Lebanon",
       price: 50,
@@ -69,7 +84,7 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/1495499466731601863?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 3,
+      id: 4,
       title: "Luxurious 2BR Haven - City Views",
       location: "Achrafieh, Beirut, Lebanon",
       price: 70,
@@ -84,7 +99,7 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/1308747579227635928?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 4,
+      id: 5,
       title: "Stylish Studio Retreat - Downtown",
       location: "Achrafieh, Beirut, Lebanon",
       price: 40,
@@ -99,7 +114,7 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/1311468561815404750?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 5,
+      id: 6,
       title: "Spacious 3BR Coastal Escape - Premium",
       location: "Zouk Mosbeh, Mount Lebanon",
       price: 65,
@@ -114,7 +129,7 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/50113039?check_in=2025-12-01&check_out=2025-12-06&guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 6,
+      id: 7,
       title: "Contemporary Urban Loft - Central",
       location: "Achrafieh, Beirut, Lebanon",
       price: 50,
@@ -129,7 +144,7 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/1314360430081139692?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 7,
+      id: 8,
       title: "Charming Seaside Condo - Waterfront",
       location: "Zouk Mosbeh, Mount Lebanon",
       price: 45,
@@ -144,7 +159,7 @@ export const PropertyShowcase = () => {
       airbnbUrl: "https://www.airbnb.com/rooms/717035280873686484?guests=1&adults=1&s=66&source=embed_widget"
     },
     {
-      id: 8,
+      id: 9,
       title: "Executive Suite Experience - Prime Location",
       location: "Achrafieh, Beirut, Lebanon",
       price: 55,
