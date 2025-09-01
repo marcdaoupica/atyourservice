@@ -1,10 +1,25 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageSquare, Code, Wrench, Headphones } from "lucide-react";
+import { MessageSquare, Code, Headphones } from "lucide-react";
 
 export const Team = () => {
   const team = [
+    {
+      name: "Marc",
+      role: "Technology Director",
+      icon: Code, 
+      color: "bg-indigo-100 text-indigo-600",
+      description: "Leads all digital systems including website development, listing creation, automation workflows, SEO, and QR code systems.",
+      responsibilities: [
+        "Website development and maintenance",
+        "Professional listing creation",
+        "Automated messaging systems and workflows", 
+        "QR code and digital systems for apartments",
+        "Property maintenance oversight",
+        "Vendor and contractor coordination",
+      ]
+    },
     {
       name: "Elie",
       role: "Guest Relations Specialist", 
@@ -17,9 +32,9 @@ export const Team = () => {
         "Financial reporting and accounting operations",
         "Booking rules and guidelines",
         "Cancellation management",
+        "SEO and platform optimization",
       ]
     },
-    
     {
       name: "Kevin",
       role: "Customer Success & Social Media Manager", 
@@ -31,38 +46,10 @@ export const Team = () => {
         "Property photography coordination and updates",
         "Operations coordination",
         "Social media content creation and management",
-        "Brand engagement and online community building"
-      ]
-    },
-    {
-      name: "Christ", 
-      role: "Operations Manager",
-      icon: Wrench,
-      color: "bg-emerald-100 text-emerald-600", 
-      description: "Ensures all properties are maintained to the highest standards with proactive maintenance and vendor coordination.",
-      responsibilities: [
-        "Property maintenance oversight",
-        "Vendor and contractor coordination",
+        "Brand engagement and online community building",
         "Quality assurance inspections",
-        "Emergency repair management",
-        "On-site issue resolution"
-      ]
-    },
-    {
-      name: "Marc",
-      role: "Technology Director",
-      icon: Code, 
-      color: "bg-indigo-100 text-indigo-600",
-      description: "Manages all digital aspects including website development, listing creation, automated messaging workflows, and QR code systems for apartment management.",
-      responsibilities: [
-        "Website development and maintenance",
-        "Professional listing creation",
-        "Automated messaging systems and workflows", 
-        "QR code and digital systems for apatments",
-        "SEO and platform optimization"
       ]
     }
-    
   ];
 
   return (
@@ -81,7 +68,7 @@ export const Team = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {team.map((member, index) => (
             <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <CardHeader className="pb-4">
